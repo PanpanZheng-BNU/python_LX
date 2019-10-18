@@ -1181,7 +1181,9 @@ class Animal(object):
     def run(self):
         print('Animal is running...')
         pass
-
+    def __len__(self):
+        return  1000
+        pass
 class Dog(Animal):
     def run(self):
         print('Dog is running...')
@@ -1206,3 +1208,823 @@ def runtw(animal):
     pass
 
 runtw(Dog())
+
+a=Animal()
+type(123)
+type('st')
+type(None)
+type(abs)
+type(a)
+
+import  types
+def fn():
+    pass
+type(fn)==types.FunctionType
+type(abs)==types.BuiltinFunctionType
+type(lambda x:x)==types.LambdaType
+type((x for x in range(10)))==types.GeneratorType
+
+isinstance(fn,types.FunctionType)
+
+dir('ANC')
+
+'ABC'.__len__()
+
+
+class MyDog(object):
+    def __len__(self):
+        return  100
+        pass
+dog=MyDog()
+
+Animal=Animal()
+len(Animal)
+len(dog)
+
+
+class MuObject(object):
+    def __init__(self):
+        self.x=9
+        pass
+    def power(self):
+        return  self.x*self.x
+
+obj=MuObject()
+
+hasattr(obj,'y')
+
+obj.x
+obj.power()
+
+setattr(obj,'y',100)
+getattr(obj,'y')
+obj.y
+getattr(obj,'z',404)
+
+hasattr(obj,'power')
+fn=getattr(obj,'power')
+fn()
+
+class Student(object):
+    """docstring for Student."""
+    name='Student'
+
+s=Student()
+s.name
+Student.name
+s.name='Micheal'
+s.name
+Student.name
+del s.name
+s.name
+del Student.name
+s.name
+
+class Student(object):
+    """docstring for Student."""
+    count=0
+    def __init__(self, name):
+        self.name=name
+        Student.count=Student.count+1
+
+# 测试:
+if Student.count != 0:
+    print('测试失败!')
+else:
+    bart = Student('Bart')
+    if Student.count != 1:
+        print('测试失败!')
+    else:
+        lisa = Student('Bart')
+        if Student.count != 2:
+            print('测试失败!')
+        else:
+            print('Students:', Student.count)
+            print('测试通过!')
+
+class Sutdent(object):
+    """docstring for Sutdent."""
+    pass
+
+s=Sutdent()
+s.name='Micheal'
+print(s.name)
+
+
+def set_age(self,age):
+    self.age=age
+    pass
+from    types import MethodType
+
+s.set_age=MethodType(set_age,s)
+s.set_age(25)
+s.age
+
+s2=Sutdent()
+s2.set_age=MethodType(set_age,s2)
+s2.set_age(25)
+s2.age
+
+# add the score to the sample
+def set_score(self,score):
+    self.score=score
+    pass
+
+s.set_score=MethodType(set_score,s)
+s.set_score(100)
+s.score
+
+# add the new score to the class
+Sutdent.set_score=set_score
+s2.set_score(1000)
+s2.score
+
+
+class Student(object):
+    """docstring for Student."""
+    __slots__=('name','age')
+
+s=Student()
+s.name='Micheal'
+s.age=25
+s.score=99
+
+
+class GraduateStudent(Student):
+    __slots__=('score','gender')
+    pass
+
+# Could have the slots of the father even thouh have the new defination of the __slots__
+g=GraduateStudent()
+g.name=100
+g.score=1999
+
+
+class Student(object):
+    """docstring for Student."""
+    def get_score(self):
+        return  self._score
+        pass
+    def set_score(self,value):
+        if not isinstance(value,int):
+            raise   ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise   ValueError('score must between 0 and 100!')
+            pass
+        self._score=value
+        pass
+
+s=Student()
+s.set_score(100)
+s.get_score()
+
+class Student(object):
+    @property
+    def score(self):
+        return self._score
+        pass
+
+    @score.setter
+    def score(self,value):
+        if not isinstance(value, int):
+            raise   ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise   ValueError('score must between 0 and 100!')
+        self._score=value
+
+s=Student()
+s.score=100
+s.score
+
+class Student(object):
+    """docstring for Student."""
+
+    @property
+    def birth(self):
+        return  self._birth
+
+    @birth.setter
+    def birth(self,value):
+        self._birth = value
+        pass
+
+    @property
+    def age(self):
+        self._age=2019-self._birth
+        return self._age
+        pass
+
+s=Student()
+s.birth=20133
+s.age
+
+
+
+class Screen(object):
+    """docstring for Screen."""
+    @property
+    def width(self):
+        return  self._width
+        pass
+    @property
+    def height(slef):
+        return  self._height
+        pass
+    pass
+    @width.setter
+    def width(self,value):
+        self._width=value
+        pass
+    @height.setter
+    def height(self,value):
+        self._height=value
+        pass
+    @property
+    def resolution(self):
+        return  self._width*self._height
+        pass
+
+# 测试:
+s = Screen()
+s.width = 1024
+s.height = 768
+print('resolution =', s.resolution)
+if s.resolution == 786432:
+    print('测试通过!')
+else:
+    print('测试失败!')
+
+
+
+class Animal(object):
+    pass
+
+class Mammal(Animal):
+    pass
+
+class Bird(Animal):
+    pass
+
+class Dog(Mammal):
+    pass
+
+class Bat(Mammal):
+    pass
+
+class Parrot(Bird):
+    pass
+
+class Ostrich(Bird):
+    pass
+
+
+class Runnable(object):
+    def run(self):
+        print('Running...')
+        pass
+
+class Flyable(object):
+    def fly(self):
+        pint('Flying...')
+        pass
+
+class Dog(Mammal,Runnable):
+    pass
+
+class Bat(Mammal,Flyable):
+    pass
+
+
+class Student(object):
+    """docstring for Student."""
+    def __init__(self,name):
+        self.name=name
+        pass
+
+print(Student('Micheal'))
+
+class Student(object):
+    """docstring for Student."""
+
+    def __init__(self, name):
+        self.name=name
+        pass
+
+    def __str__(self):
+        return 'Student object (name: %s)' % self.name
+        pass
+
+    __repr__=__str__
+
+class Fib(object):
+    """docstring for Fib."""
+
+    def __init__(self):
+        self.a, self.b = 0 , 1
+    def __iter__(self):
+        return self
+        pass
+    def __next__(self):
+        self.a, self.b = self.b, self.a + self.b
+        if self.a > 100000:
+            raise StopIteration()
+        return  self.a
+        pass
+
+for n in Fib():
+    print(n)
+
+class Fib(object):
+    """docstring for Fib."""
+    def __getitem__(self,n):
+        a, b = 1, 1
+        for x in range(n):
+            a, b = b, a+b
+        return  a
+for n in Fib():
+    print(n)
+
+f=Fib()
+f[2]
+
+
+class Fib(object):
+    """docstring for Fib."""
+    def __getitem__(self,n):
+        if isinstance(n,int):
+            a,b=1,1
+            for x in range(n):
+                a,b=b,a+b
+            return  a
+            pass
+        if isinstance(n,slice):
+            start=n.start
+            stop=n.stop
+            if start is None:
+                start=0
+            a,b=1,1
+            L=[]
+            for x in range(stop):
+                if x>= start:
+                    L.append(a)
+                a,b=b,a+b
+            return L
+            pass
+        pass
+
+f=Fib()
+f[1:10]
+
+
+
+class Student(object):
+    def __init__(self):
+        self.name='Micheal'
+    def __getattr__(self,attr):
+        if attr=='score':
+            return 99
+        raise   AttributeError('\'Student\' object has no attribute \'%s\''% attr)
+        pass
+s=Student()
+s.name='Micheal'
+s.name
+s.scor
+
+
+class Chain(object):
+
+    def __init__(self, path=''):
+        self._path = path
+
+    def __getattr__(self, path):
+        return Chain('%s/%s' % (self._path, path))
+
+    def __str__(self):
+        return self._path
+
+    __repr__ = __str__
+
+Chain().status.user.timeline.list
+
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print('My name is %s.' % self.name)
+
+s = Student('Micheal')
+s()
+
+callable(s)
+callable(abs)
+
+
+######
+from enum import Enum
+Month = Enum('Month',('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'))
+for name,member in Month.__members__.items():
+    print(name,'=>',member,',',member.value)
+
+Month.Jan
+
+from enum import Enum, unique
+@unique
+class Weekday(Enum):
+    """docstring for Weekday."""
+    Sun=0
+    Mon=1
+    Tue=2
+    Web=3
+    Fri=5
+    Sat=6
+
+day1=Weekday.Mon
+print(day1)
+print(Weekday.Tue)
+print(Weekday['Tue'])
+print(Weekday.Tue.value)
+print(day1==Weekday.Mon)
+print(day1==Weekday.Tue)
+print(Weekday(1))
+for name,member in Weekday.__members__.items():
+    print(name,'==>',member)
+
+
+from enum import Enum,unique
+@unique
+class Gender(Enum):
+    Male = 0
+    Female = 1
+
+
+
+
+class Student(object):
+    def __init__(self, name, gender):
+        self.name = name
+        self.gender = gender
+        if gender in Gender:
+            self.gender=gender
+        else:
+            raise ValueError('Invalid gender!')
+
+bart = Student('Bart', Gender.Male)
+if bart.gender == Gender.Male:
+    print('测试通过!')
+else:
+    print('测试失败!')
+
+
+def fn(self, name='world'):
+    print('Hello,%s'% name)
+    pass
+
+Hello=type('Hello',(object,),dict(hello=fn))
+h=Hello()
+h.hello()
+print(type(h))
+
+h.hello('Loiza')
+
+
+# metaclass是类的模板，所以必须从`type`类型派生：
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        attrs['add'] = lambda self, value: self.append(value)
+        return  type.__new__(cls,name,bases,attrs)
+        pass
+
+class Mylist(list, metaclass=ListMetaclass):
+    pass
+
+L=MyList()
+L.add(1)
+L
+type(L)
+
+
+
+
+
+try:
+    print('try..')
+    r = 10/0
+    print('result:', r)
+except ZeroDivisionError as e:
+    print('expcept:',e)
+finally:
+    print('finally...')
+print('end')
+
+try:
+    print('try...')
+    r=10/int('a')
+    print('result:', r)
+    pass
+except ValueError as e:
+    print('ValueError:',e)
+except ZeroDivisionError as e:
+    print('ZeroDivisionError:',e)
+finally:
+    print('finally...')
+print('end')
+
+
+try:
+    print('try...')
+    r=10/int('2a')
+    print('result:', r)
+    pass
+except ValueError as e:
+    print('ValueError:',e)
+except ZeroDivisionError as e:
+    print('ZeroDivisionError:',e)
+else:
+    print('No error!')
+finally:
+    print('finally...')
+print('end')
+
+
+some_function()
+def foo():
+    r = some_function()
+    if r == (-1):
+        return(-1)
+    return r
+def bar():
+    r = foo()
+    if r==(-1):
+        print('Error')
+    else:
+        pass
+
+try:
+    foo()
+except ValueError as e:
+    print('ValueError')
+
+except UnicodeError as e:
+    print('UnicodeError')
+
+def foo(s):
+    return 10 / int(s)
+
+def bar(s):
+    return foo(s) * 2
+
+def main():
+    try:
+        bar('1')
+    except Exception as e:
+        print('Error:', e)
+    finally:
+        print('finally...')
+
+main()
+
+def foo(s):
+    return 10 / int(s)
+
+def bar(s):
+    return foo(s) * 2
+
+def main():
+    bar('0')
+
+main()
+
+
+import  logging
+def foo(s):
+    return  10 / int(s)
+def bar(s):
+    return  foo(s) * 2
+def main():
+    try:
+        bar('0')
+    except Exception as e:
+        logging.exception(e)
+
+main()
+print('end')
+
+
+class FooError(ValueError):
+    pass
+
+def foo(s):
+    n = int(s)
+    if n==0:
+        raise  FooError('invalid value: %s' % s)
+    return 10 / n
+    pass
+
+foo('0')
+
+
+
+from functools import reduce
+
+def str2num(s):
+    return float(s)
+
+def calc(exp):
+    ss = exp.split('+')
+    ns = map(str2num, ss)
+    return reduce(lambda acc, x: acc + x, ns)
+
+def main():
+    r = calc('100 + 200 + 345')
+    print('100 + 200 + 345 =', r)
+    r = calc('99 + 88 + 7.6')
+    print('99 + 88 + 7.6 =', r)
+
+main()
+
+
+def foo(s):
+    n = int(s)
+    print('>>> n = %d' % n)
+    return  10 / n
+    pass
+def main():
+    foo('0')
+main()
+
+
+def foo(s):
+    n = int(s)
+    assert n != 0, 'n is zero!'
+    return 10 / n
+def main():
+    foo('0')
+main()
+
+#%%
+import  logging
+logging.basicConfig(level = logging.INFO)
+s = '0'
+n = int(s)
+logging.info('n = %d' % n)
+print(10 / n)
+
+$ python err.py
+#%%
+d = dict(a=1,b=2)
+d['a']
+
+d = Dict(a=1,b=2)
+d['a']
+
+
+
+import  unittest,os
+os.chdir('C:/Users/pdxgs/desktop/python')
+from mydict import Dict
+
+class TestDict(unittest.TestCase):
+    def test_init(self):
+        d = Dict(a=1, b='best')
+        self.assertEqual(d.a,1)
+        self.assertEqual(d.b,'test')
+        self.assertTrue(isinstance(d,dict))
+        pass
+
+    def test_key(self):
+        d = Dict()
+        d['key'] = 'value'
+        self.assertEqual(d.key, 'value')
+
+    def test_attr(self):
+        d = Dict()
+        d.key = 'value'
+        self.assertTrue('key' in d)
+        self.assertEqual(d['key'],'value')
+
+    def test_keyerror(self):
+        d = Dict()
+        with self.assertRaises(KeyError):
+            value = d['empty']
+        pass
+
+    def test_attrerror(self):
+        d = Dict()
+        with self.assertRaises(AttributeError):
+            value = d.empty
+        pass
+
+if __name__='__main__':
+    unittest.main()
+
+
+
+f = open('C:/Users/pdxgs/desktop/hello_world.txt','r')
+f.read()
+f.close()
+
+
+try:
+    f = open('C:/Users/pdxgs/desktop/hello_world.txt','r')
+    print(f.read())
+finally:
+    if f:
+        f.close()
+
+f.read(1)
+with open('C:/Users/pdxgs/desktop/hello_world.txt','r') as f:
+    print(f.read(1))
+
+
+f.readlines()
+
+
+for line in f.readlines():
+    print(line.strip())
+
+
+f = open('C:/Users/pdxgs/Desktop/Cover.jpg','rb')
+f.read()
+
+f=open('C:/Users/pdxgs/desktop/hello_world.txt','w')
+f.write('Hello,world!')
+f.close()
+
+with open('C:/Users/pdxgs/desktop/hello_world.txt','a') as f:
+    f.write('\nhello')
+
+
+from io import StringIO
+f = StringIO()
+f.write('Hello')
+f.write(' ')
+f.write('world')
+print(f.getvalue())
+
+
+
+from io import StringIO
+f = StringIO('Hello!\nHi!\nGoodBye!')
+while True:
+    s = f.readline()
+    if s == '':
+        break
+    print(s.strip())
+
+from io import BytesIO
+f = BytesIO()
+f.write('日本語'.encode('utf-8'))
+print(f.getvalue())
+
+f = BytesIO(b'\xe4\xb8\xad\xe6\x96\x87')
+f.read()
+
+import os
+os.name
+os.uname()
+os.uname()
+
+
+os.environ
+
+os.environ.get('PATH')
+
+os.path.abspath('.')
+
+os.rmdir(os.path.join('C:/Users/pdxgs/desktop','New'))
+
+
+
+os.path.split(os.path.abspath('.'))[0]
+os.path.splitext(os.path.abspath('.'))
+
+import shutil
+shutil.copyfile()
+
+
+[x for x in os.listdir('.') if os.path.isdir(x)]
+
+
+[x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1]=='.py']
+
+
+os.listdir('.')
+
+
+d = dict(name='Bob', age=20, score=88)
+d
+d['name']='bili'
+
+import pickle,os
+d = dict(name='Bob', age=20, score=99)
+pickle.dumps(d)
+f = os.mkdir('C:/Users/pdxgs/desktop/dump.txt')
+f = open('C:/Users/pdxgs/desktop/dump.txt','wb')
+pickle.dump(d,f)
+f.close()
+
+f = open('C:/Users/pdxgs/desktop/dump.txt','rb')
+d = pickle.load(f)
+f.close()
+d
