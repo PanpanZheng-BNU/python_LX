@@ -1,5 +1,4 @@
-from sys import argv
-from os.path import exists
+from sys import argv; from os.path import exists
 
 script, from_file, to_file = argv
 
@@ -18,7 +17,7 @@ input()
 out_file = open(to_file, 'w')
 out_file.write(indata)
 
-print("Alrightm, all done.")
+print("Alright, all done.")
 
 out_file.close()
 in_file.close()
