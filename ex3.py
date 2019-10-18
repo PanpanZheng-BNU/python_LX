@@ -1,12 +1,13 @@
+# Will Count chikens
 print("I will now count my chickens")
-
+# print the "Hens" and the result of 25+30/6
 print("Hens", 25+30/6)
 print("Roosters",100-25*3%4)
-
+# Count the Eggs
 print("Now I will count the eggs:")
 
 print(3 + 2 + 1 - 5 + 4 % 2 - 1 / 4 + 6)
-
+# Print String "Is it true that 3 + 2 < 5 - 7?"
 print("Is it true that 3 + 2 < 5 - 7 ?")
 
 print(3 + 2 < 5 - 7)
