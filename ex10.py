@@ -12,4 +12,5 @@ I'll do a list:
 print(tabby_cat.format('\n' + persian_cat))
 print(persian_cat)
 print(backslash_cat)
+print (backslash_cat)
 print(fat_cat)
